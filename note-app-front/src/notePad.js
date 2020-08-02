@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 function NotePad() {
     const [msg, setmsg] = useState('');
+    var username = 'preety';
     useEffect(() => {
-        fetch('/users', {
+        fetch(`/users/${username}`, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: 'preety' })
+            headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(user => setmsg(user));
