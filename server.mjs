@@ -41,6 +41,7 @@ pgClient.query('SELECT * from persons', (err, res) => {
 serveExp.use(bodyParser.json());
 
 
+
 //server handlers
 serveExp.get('/users', (req, res) => {
     const msg = 'your notes are safe';
