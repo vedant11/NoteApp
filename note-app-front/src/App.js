@@ -10,8 +10,7 @@ function App() {
   })
   return (
     <div className="App">
-      hello
-        your msg: { msg}
+      hello your msg: <br />{msg}
     </div >
   );
 }
