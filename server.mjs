@@ -5,7 +5,7 @@ import pg from 'pg';
 
 // Init processes and configs
 dotenv.config();
-const DBport = process.env.PORT;
+const DBport = process.env.DB_PORT;
 const serverPort = process.env.SERV_PORT;
 const pgconfig = {
     host: process.env.HOST,
@@ -41,17 +41,25 @@ pgClient.query('SELECT * from persons', (err, res) => {
 serveExp.use(bodyParser.json());
 
 
-
 //server handlers
+const SQL_SEARCH_QUERY = 'SELECT * FROM persons WHERE username = $1';
 serveExp.get('/users', (req, res) => {
-    const msg = 'your notes are safe';
-    res.send(JSON.stringify(msg));
+    const { username } = req.body;
+    pgClient.query(SQL_SEARCH_QUERY, [username]
+    ).then((data) => {
+        console.log('served the req');
+        res.send(JSON.stringify(data.rows[0].text));
+    }).catch((err) => {
+        console.log('error serving the req', err);
+    });
+    // const msg = 'your notes are safe';
+    // res.send(JSON.stringify(msg));
 });
 
-const Qtext = 'INSERT INTO persons(username, text) VALUES($1, $2)';
+const SQL_INSERT_QUERY = 'INSERT INTO persons(username, text) VALUES($1, $2)';
 serveExp.post('/register', (req, res) => {
     const { username, text } = req.body;
-    pgClient.query(Qtext, [username, text]
+    pgClient.query(SQL_INSERT_QUERY, [username, text]
     ).then(() => {
         console.log('added to the DB: ', username, text);
         res.json({ status: 'added', success: 'ok' });
