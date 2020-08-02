@@ -33,7 +33,6 @@ pgClient.query('SELECT * from persons', (err, res) => {
     }
     else
         console.log('table exists');
-    // pgClient.end();
 });
 
 
@@ -43,17 +42,16 @@ serveExp.use(bodyParser.json());
 
 //server handlers
 const SQL_SEARCH_QUERY = 'SELECT * FROM persons WHERE username = $1';
-serveExp.get('/users', (req, res) => {
-    const { username } = req.body;
+serveExp.get('/users/:username', (req, res) => {
+    const { username } = req.params;
+    console.log(username, 'requested');
     pgClient.query(SQL_SEARCH_QUERY, [username]
     ).then((data) => {
-        console.log('served the req');
         res.send(JSON.stringify(data.rows[0].text));
+        console.log('served the req');
     }).catch((err) => {
         console.log('error serving the req', err);
     });
-    // const msg = 'your notes are safe';
-    // res.send(JSON.stringify(msg));
 });
 
 const SQL_INSERT_QUERY = 'INSERT INTO persons(username, text) VALUES($1, $2)';

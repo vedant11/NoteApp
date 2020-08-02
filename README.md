@@ -2,8 +2,10 @@
 
 A note keeping app.
 
-<b>Tech stack</b>: react.js, express.js, node-pg (connector), postgresDB
+- <u>Tech stack</u> : react.js, express.js, node-pg (connector), postgresDB
 
 ### v1
 
-Shifted from knex connector to native node-pg to write readable SQL queries
+_____
+
+- Shifted from knex connector to native node-pg to write readable SQL queries

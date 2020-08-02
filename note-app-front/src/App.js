@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import NotePad from './notePad';
 import './App.css';
 
 function App() {
-  const [msg, setmsg] = useState('');
-  useEffect(() => {
-    fetch('/users')
-      .then(res => res.json())
-      .then(user => setmsg(user));
-  })
   return (
     <div className="App">
-      hello your msg: <br />{msg}
+      hello<br />
+      <NotePad />
     </div >
   );
 }
