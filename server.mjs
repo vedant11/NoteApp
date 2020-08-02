@@ -26,13 +26,25 @@ pgClient.query('SELECT * from persons', (err, res) => {
     if (err) {
         pgClient.query('CREATE TABLE persons (username text NOT NULL PRIMARY KEY,text text);'
         ).then(() => {
-            console.log('added new table');
+            console.log('added new table for notes');
         }).catch((err) => {
-            console.log('err adding table', err);
+            console.log('err adding table for notes', err);
         })
     }
     else
-        console.log('table exists');
+        console.log('table exists for notes');
+});
+pgClient.query('SELECT * from profiles', (err, res) => {
+    if (err) {
+        pgClient.query('CREATE TABLE profiles (username text NOT NULL PRIMARY KEY,password text);'
+        ).then(() => {
+            console.log('added new table for profiles');
+        }).catch((err) => {
+            console.log('err adding table for profile', err);
+        })
+    }
+    else
+        console.log('table exists for profile');
 });
 
 
@@ -54,15 +66,29 @@ serveExp.get('/users/:username', (req, res) => {
     });
 });
 
-const SQL_INSERT_QUERY = 'INSERT INTO persons(username, text) VALUES($1, $2)';
-serveExp.post('/register', (req, res) => {
+const PERSONS_INSERT_QUERY = 'INSERT INTO persons(username, text) VALUES($1, $2)';
+const PROFILES_INSERT_QUERY = 'INSERT INTO profiles(username,password) VALUES($1,$2)';
+serveExp.post('/write', (req, res) => {
+    console.log(req, 'write');
     const { username, text } = req.body;
-    pgClient.query(SQL_INSERT_QUERY, [username, text]
+    pgClient.query(PERSONS_INSERT_QUERY, [username, text]
     ).then(() => {
         console.log('added to the DB: ', username, text);
         res.json({ status: 'added', success: 'ok' });
     }).catch((err) => {
-        console.log('error posting', err);
+        // console.log('error posting', err);
+        res.json({ status: 'not addedd', success: 'no' });
+    });
+});
+serveExp.post('/register', (req, res) => {
+    console.log('hello');
+    const { username, password } = req.body;
+    pgClient.query(PROFILES_INSERT_QUERY, [username, password]
+    ).then(() => {
+        console.log('added to the DB: ', username);
+        res.json({ status: 'added', success: 'ok' });
+    }).catch((err) => {
+        // console.log('error posting', err);
         res.json({ status: 'not addedd', success: 'no' });
     });
 });

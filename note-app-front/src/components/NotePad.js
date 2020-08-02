@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-function NotePad() {
+function NotePad(props) {
     const [msg, setmsg] = useState('');
-    var username = 'preety';
+    const username = props.username;
     useEffect(() => {
         fetch(`/users/${username}`, {
             method: 'GET',
@@ -13,7 +13,7 @@ function NotePad() {
     })
     return (
         <div color='black'>
-            hello your msg: <br />{msg}
+            <textarea id="currNote" name="w3review" rows="4" cols="50" value={msg} />
         </div >
     );
 }
