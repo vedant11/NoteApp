@@ -1,5 +1,5 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser'; 
 import dotenv from 'dotenv';
 import pg from 'pg';
 
@@ -49,7 +49,7 @@ pgClient.query('SELECT * from profiles', (err, res) => {
 
 
 // middleware
-serveExp.use(bodyParser.json());
+serveExp.use(express.json());
 
 
 //server handlers
