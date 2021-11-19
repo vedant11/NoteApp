@@ -7,10 +7,10 @@ import rfs from 'rotating-file-stream';
 // create a rotating write stream
 export const accessLogStream = rfs.createStream('access.log', {
 	interval: '1d', // rotate daily
-	path: path.join('log'),
+	path: path.join('./log'),
 });
 export const errorLogSteam = rfs.createStream('error.log', {
-	path: path.join('log'),
+	path: path.join('./log'),
 	interval: '1d',
 });
 
