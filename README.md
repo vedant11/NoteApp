@@ -12,6 +12,8 @@ A note keeping app.
 
 Check out `log` dir for detailed logs and console for quick logs
 
+Check [Wiki](https://github.com/vedant11/NoteApp/wiki) for extras
+
 ---
 
 ### <u>Tech stack</u> :

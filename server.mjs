@@ -1,7 +1,6 @@
 // package.json
 import express from 'express';
 import morgan from 'morgan';
-
 // constants
 import {
 	CREATE_TABLE,
@@ -68,7 +67,9 @@ pgClient.query(TABLE_CHECK('profile'), (err) => {
 // middleware
 serveExp.use(express.json());
 
-//server handlers
+/*
+server handlers/APIs
+*/
 serveExp.get('/users/:username', (req, res) => {
 	const { username } = req.params;
 	infoLogger.verbose(username, 'requested');
