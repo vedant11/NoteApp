@@ -2,21 +2,25 @@
 
 A note keeping app.
 
-### setting up
+---
+
+## Setting up
 
 > npm i
 
-> mkdir log
-
-> touch ./log/app.log ./log/access.log ./log/error.log
-
 > npm start
 
-Check out logs for detailed logs and console for quick logs
+Check out `log` dir for detailed logs and console for quick logs
 
 ---
 
-> <u>Tech stack</u> : react.js, express.js, node-pg (connector), postgresDB
+### <u>Tech stack</u> :
+
+> react.js, express.js, node-pg (connector), postgresDB
+
+---
+
+## Functions
 
 -   Registration functionality
 
@@ -30,8 +34,10 @@ Check out logs for detailed logs and console for quick logs
 
 ![image3](https://user-images.githubusercontent.com/47473330/142571462-1a641d0d-59b5-4630-b8bc-7eddd0bde492.png)
 
-### v1
-
 ---
 
+### v1
+
 -   Shifted from knex connector to native node-pg to write readable SQL queries
+
+Please find info for later versions in `Releases`
