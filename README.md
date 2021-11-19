@@ -12,6 +12,10 @@ A note keeping app.
 
 > npm start
 
+Check out logs for detailed logs and console for quick logs
+
+---
+
 > <u>Tech stack</u> : react.js, express.js, node-pg (connector), postgresDB
 
 -   Registration functionality

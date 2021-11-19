@@ -20,9 +20,13 @@ import {
 } from './config.mjs';
 // local modules
 import { errLogger, infoLogger } from './logger.mjs';
-
 // Init serveExps
-pgClient.connect();
+pgClient
+	.connect()
+	.then(() => infoLogger.info('Connected to Database successfully'))
+	.catch((err) => {
+		errLogger.error('Unable to connect to the Database: ', err);
+	});
 const serveExp = express();
 // setup the logger for HTPP requests
 serveExp.use(morgan('combined', { stream: accessLogStream }));
@@ -51,7 +55,7 @@ pgClient.query(TABLE_CHECK('notes'), (err) => {
 pgClient.query(TABLE_CHECK('profile'), (err) => {
 	if (err) {
 		pgClient
-			.query(CREATE_TABLE(profiles))
+			.query(CREATE_TABLE('profiles'))
 			.then(() => {
 				infoLogger.info('added new table for profiles');
 			})

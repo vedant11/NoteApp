@@ -16,7 +16,7 @@ export const errorLogSteam = rfs.createStream('error.log', {
 
 // Init processes and configs
 export const DBport = process.env.DB_PORT;
-export const serverPort = process.env.SERV_PORT;
+export const serverPort = process.env.SERVER_PORT;
 export const pgClient = new pg.Client({
 	host: process.env.HOST,
 	user: process.env.DB_USER,
